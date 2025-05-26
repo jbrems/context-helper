@@ -5,7 +5,7 @@
 <canvas id="myCanvas" width="110" height="70"></canvas>
 
 <script type="module">
-  import { ContextHelper } from '@jbrems/context-helper'
+  import { ContextHelper } from 'https://unpkg.com/@jbrems/context-helper'
 
   const canvas = document.getElementById('myCanvas')
   const ctx = new ContextHelper(canvas.getContext('2d'))
