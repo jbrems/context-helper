@@ -78,7 +78,7 @@ ctx.circle(80, 30, 20).fill().stroke()
 ctx.line(50, 40, 55, 60).stroke()
 ctx.line(60, 40, 55, 60).stroke()
 
-// update fill style, stroke style, and line width
+// Update fill style, stroke style, and line width
 ctx.fillStyle('violet').strokeStyle('violet').lineWidth(2)
 
 ctx.circle(30, 10, 2).fill()
