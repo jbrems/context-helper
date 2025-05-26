@@ -34,7 +34,7 @@
 </script>
 ```
 
-Creates this awesome logo in a HTML canvas.
+Creates this awesome logo in a HTML canvas.  
 <img src="demo.png" alt="Demo image" height="220"> 
 
 ## Verbosity
