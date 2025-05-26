@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Context helper demo</title>
+</head>
+<body style="background: #333333;">
+  <canvas id="myCanvas" width="110" height="70" style="display: block; background: #222222; margin: auto; height: 80dvh;"></canvas>
+  <canvas id="myCanvas2" width="110" height="70" style="display: block; background: #222222; margin: auto; height: 80dvh;"></canvas>
+  <canvas id="myCanvas3" width="110" height="70" style="display: block; background: #222222; margin: auto; height: 80dvh;"></canvas>
+  <canvas id="myCanvas4" width="110" height="70" style="display: block; background: #222222; margin: auto; height: 80dvh;"></canvas>
+
+  <script type="module">
+    import { ContextHelper } from './src/index.js'
+
+    const canvas = document.getElementById('myCanvas')
+    const ctx = new ContextHelper(canvas.getContext('2d'))
+
+    ctx.line(30, 10, 80, 10).lineWidth(10).stroke('lightseagreen')
+    ctx.circle(30, 30, 20).fill('yellow').lineWidth(10).stroke('lightseagreen')
+    ctx.circle(80, 30, 20).fill('yellow').lineWidth(10).stroke('lightseagreen')
+    ctx.line(50, 40, 55, 60).lineWidth(10).lineCap('round').stroke('lightseagreen')
+    ctx.line(60, 40, 55, 60).lineWidth(10).lineCap('round').stroke('lightseagreen')
+
+    ctx.circle(30, 10, 2).fill('violet')
+    ctx.circle(80, 10, 2).fill('violet')
+    ctx.line(30, 10, 80, 10).lineWidth(2).stroke('violet')
+
+    ctx.circle(30, 30, 2).fill('violet')
+    ctx.circle(30, 30, 20).lineWidth(2).stroke('violet')
+
+    ctx.circle(80, 30, 2).fill('violet')
+    ctx.circle(80, 30, 20).lineWidth(2).stroke('violet')
+
+    ctx.circle(50, 45, 2).fill('violet')
+    ctx.circle(60, 45, 2).fill('violet')
+    ctx.circle(55, 60, 2).fill('violet')
+    ctx.line(50, 45, 55, 60).lineWidth(2).stroke('violet')
+    ctx.line(60, 45, 55, 60).lineWidth(2).stroke('violet')
+
+    const canvas2 = document.getElementById('myCanvas2')
+    const ctx2 = new ContextHelper(canvas2.getContext('2d'))
+
+    ctx2.line(30, 10, 80, 10).lineWidth(10).stroke('lightseagreen') // line width and stroke style are remembered
+    ctx2.circle(30, 30, 20).fill('yellow').stroke() // fill style is remembered
+    ctx2.circle(80, 30, 20).fill().stroke() 
+    ctx2.line(50, 40, 55, 60).lineCap('round').stroke() // line cap is remembered
+    ctx2.line(60, 40, 55, 60).stroke()
+
+    ctx2.circle(30, 10, 2).fill('violet') // fill style is updated
+    ctx2.circle(80, 10, 2).fill()
+    ctx2.line(30, 10, 80, 10).lineWidth(2).stroke('violet') // line width and stroke style are updated
+
+    ctx2.circle(30, 30, 2).fill()
+    ctx2.circle(30, 30, 20).stroke()
+
+    ctx2.circle(80, 30, 2).fill()
+    ctx2.circle(80, 30, 20).stroke()
+
+    ctx2.circle(50, 45, 2).fill()
+    ctx2.circle(60, 45, 2).fill()
+    ctx2.circle(55, 60, 2).fill()
+    ctx2.line(50, 45, 55, 60).stroke()
+    ctx2.line(60, 45, 55, 60).stroke()
+
+    const canvas3 = document.getElementById('myCanvas3')
+    const ctx3 = new ContextHelper(canvas3.getContext('2d'))
+
+    // Set line width, stroke style, fill style, and line cap
+    ctx3.lineWidth(10).strokeStyle('lightseagreen').fillStyle('yellow').lineCap('round')
+
+    ctx3.line(30, 10, 80, 10).stroke()
+    ctx3.circle(30, 30, 20).fill().stroke()
+    ctx3.circle(80, 30, 20).fill().stroke() 
+    ctx3.line(50, 40, 55, 60).stroke()
+    ctx3.line(60, 40, 55, 60).stroke()
+
+    // update fill style, stroke style, and line width
+    ctx3.fillStyle('violet').strokeStyle('violet').lineWidth(2)
+
+    ctx3.circle(30, 10, 2).fill()
+    ctx3.circle(80, 10, 2).fill()
+    ctx3.line(30, 10, 80, 10).stroke()
+
+    ctx3.circle(30, 30, 2).fill()
+    ctx3.circle(30, 30, 20).stroke()
+
+    ctx3.circle(80, 30, 2).fill()
+    ctx3.circle(80, 30, 20).stroke()
+
+    ctx3.circle(50, 45, 2).fill()
+    ctx3.circle(60, 45, 2).fill()
+    ctx3.circle(55, 60, 2).fill()
+    ctx3.line(50, 45, 55, 60).stroke()
+    ctx3.line(60, 45, 55, 60).stroke()
+
+    const canvas4 = document.getElementById('myCanvas4')
+    const ctx4 = new ContextHelper(canvas4.getContext('2d'))
+
+    ctx4.lineWidth(10).strokeStyle('lightseagreen').fillStyle('yellow').lineCap('round').line(30, 10, 80, 10).stroke().circle(30, 30, 20).fill().stroke().circle(80, 30, 20).fill().stroke().line(50, 40, 55, 60).stroke().line(60, 40, 55, 60).stroke().fillStyle('violet').strokeStyle('violet').lineWidth(2).circle(30, 10, 2).fill().circle(80, 10, 2).fill().line(30, 10, 80, 10).stroke().circle(30, 30, 2).fill().circle(30, 30, 20).stroke().circle(80, 30, 2).fill().circle(80, 30, 20).stroke().circle(50, 45, 2).fill().circle(60, 45, 2).fill().circle(55, 60, 2).fill().line(50, 45, 55, 60).stroke().line(60, 45, 55, 60).stroke()
+  </script>
+</body>
+</html>
