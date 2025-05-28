@@ -3,6 +3,14 @@ export class ContextHelper {
     this.ctx = context
   }
 
+  savePNG() {
+    const dataURL = this.ctx.canvas.toDataURL("image/png");
+    const link = document.createElement("a");
+    link.href = dataURL;
+    link.download = "canvas-image.png";
+    link.click();
+  }
+
   save() {
     this.ctx.save()
     return this
@@ -15,6 +23,17 @@ export class ContextHelper {
 
   translate(x, y) {
     this.ctx.translate(x, y)
+    return this
+  }
+
+  resetTranslate(x, y) {
+    this.ctx.setTransform(1, 0, 0, 1, 0, 0)
+    if (x || y) this.translate(x, y)
+    return this
+  }
+
+  rotate(degrees) {
+    this.ctx.rotate(degrees * Math.PI / 180)
     return this
   }
 
@@ -44,7 +63,6 @@ export class ContextHelper {
   }
 
   arc(x, y, radius, startAngle, endAngle, counterClockwise = false) {
-    this.ctx.beginPath()
     this.ctx.arc(x, y, radius, startAngle, endAngle, counterClockwise)
     return this
   }
@@ -83,6 +101,7 @@ export class ContextHelper {
       .arcTo(x, y + height, x, y + height - radius, radius)
       .lineTo(x, y + radius)
       .arcTo(x, y, x + radius, y, radius)
+      .closePath()
     return this
   }
 
@@ -98,6 +117,11 @@ export class ContextHelper {
 
   lineCap(lineCap) {
     this.ctx.lineCap = lineCap
+    return this
+  }
+
+  lineJoin(lineJoin) {
+    this.ctx.lineJoin = lineJoin
     return this
   }
 

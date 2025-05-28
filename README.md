@@ -1,106 +1,35 @@
-# <img src="demo.png" alt="logo" height="35" style="margin-bottom: -5px;"> context-helper
+# <img src="logo.png" alt="logo" height="100" style="margin-bottom: -25px;"> context-helper
 **Daisy chained helper methods for the Canvas 2D context.**
 
 ```html
-<canvas id="myCanvas" width="110" height="70"></canvas>
-
-<script type="module">
-  import { ContextHelper } from 'https://unpkg.com/@jbrems/context-helper'
-
+  <canvas id="myCanvas" width="100" height="100"></canvas>
+```
+```javascript
   const canvas = document.getElementById('myCanvas')
   const ctx = new ContextHelper(canvas.getContext('2d'))
 
-  ctx.line(30, 10, 80, 10).lineWidth(10).stroke('lightseagreen')
-  ctx.circle(30, 30, 20).fill('yellow').lineWidth(10).stroke('lightseagreen')
-  ctx.circle(80, 30, 20).fill('yellow').lineWidth(10).stroke('lightseagreen')
-  ctx.line(50, 40, 55, 60).lineWidth(10).lineCap('round').stroke('lightseagreen')
-  ctx.line(60, 40, 55, 60).lineWidth(10).lineCap('round').stroke('lightseagreen')
+  // Tripod
+  ctx.lineWidth(4).lineCap('round').lineJoin('round').strokeStyle('#2B2B2B').fillStyle('#C47A3D')
+  ctx.rect(47, 10, 6, 80, 2).stroke().fill()
+  ctx.translate(35, 55).rotate(10).rect(-3, -40, 6, 80, 2).stroke().fill()
+  ctx.resetTranslate(65, 55).rotate(-10).rect(-3, -40, 6, 80, 2).stroke().fill()
+  ctx.resetTranslate(50, 65).rect(-35, -3, 70, 6, 2).stroke().fill()
 
-  ctx.circle(30, 10, 2).fill('violet')
-  ctx.circle(80, 10, 2).fill('violet')
-  ctx.line(30, 10, 80, 10).lineWidth(2).stroke('violet')
+  // Canvas
+  ctx.resetTranslate(50, 42).rect(-30, -20, 60, 40, 2).stroke('#2B2B2B').fill('white')
 
-  ctx.circle(30, 30, 2).fill('violet')
-  ctx.circle(30, 30, 20).lineWidth(2).stroke('violet')
+  // Bracket
+  ctx.lineWidth(3)
+  ctx.resetTranslate(25, 42).beginPath().moveTo(10, -10).lineTo(0, 0).lineTo(10, 10).stroke('#F35050')
+  
+  // c
+  ctx.translate(18, 0).beginPath().arc(0, 0, 6, 0.25 * Math.PI, 1.75 * Math.PI, false).stroke('#2D8EFF')
 
-  ctx.circle(80, 30, 2).fill('violet')
-  ctx.circle(80, 30, 20).lineWidth(2).stroke('violet')
-
-  ctx.circle(50, 45, 2).fill('violet')
-  ctx.circle(60, 45, 2).fill('violet')
-  ctx.circle(55, 60, 2).fill('violet')
-  ctx.line(50, 45, 55, 60).lineWidth(2).stroke('violet')
-  ctx.line(60, 45, 55, 60).lineWidth(2).stroke('violet')
-</script>
+  // h
+  ctx.translate(10, 0).beginPath().moveTo(0, 6).lineTo(0, -12).moveTo(0, 1).arc(5, 1, 5, Math.PI, 0, false).lineTo(10, 6).stroke('#3DBA73')
+  
+  // Bracket
+  ctx.resetTranslate(75, 42).beginPath().moveTo(-10, -10).lineTo(0, 0).lineTo(-10, 10).stroke('#F35050')
 ```
-
-Creates this awesome logo in a HTML canvas.  
-<img src="demo.png" alt="Demo image" height="220"> 
-
-## Verbosity
-
-The Canvas context remembers passed options by default.  
-The same example can be written as:
-
-```javascript
-ctx.line(30, 10, 80, 10).lineWidth(10).stroke('lightseagreen') // line width and stroke style are remembered
-ctx.circle(30, 30, 20).fill('yellow').stroke() // fill style is remembered
-ctx.circle(80, 30, 20).fill().stroke() 
-ctx.line(50, 40, 55, 60).lineCap('round').stroke() // line cap is remembered
-ctx.line(60, 40, 55, 60).stroke()
-
-ctx.circle(30, 10, 2).fill('violet') // fill style is updated
-ctx.circle(80, 10, 2).fill()
-ctx.line(30, 10, 80, 10).lineWidth(2).stroke('violet') // line width and stroke style are updated
-
-ctx.circle(30, 30, 2).fill()
-ctx.circle(30, 30, 20).stroke()
-
-ctx.circle(80, 30, 2).fill()
-ctx.circle(80, 30, 20).stroke()
-
-ctx.circle(50, 45, 2).fill()
-ctx.circle(60, 45, 2).fill()
-ctx.circle(55, 60, 2).fill()
-ctx.line(50, 45, 55, 60).stroke()
-ctx.line(60, 45, 55, 60).stroke()
-```
-
-Or even as:
-
-```javascript
-// Set line width, stroke style, fill style, and line cap
-ctx.lineWidth(10).strokeStyle('lightseagreen').fillStyle('yellow').lineCap('round')
-
-ctx.line(30, 10, 80, 10).stroke()
-ctx.circle(30, 30, 20).fill().stroke()
-ctx.circle(80, 30, 20).fill().stroke() 
-ctx.line(50, 40, 55, 60).stroke()
-ctx.line(60, 40, 55, 60).stroke()
-
-// Update fill style, stroke style, and line width
-ctx.fillStyle('violet').strokeStyle('violet').lineWidth(2)
-
-ctx.circle(30, 10, 2).fill()
-ctx.circle(80, 10, 2).fill()
-ctx.line(30, 10, 80, 10).stroke()
-
-ctx.circle(30, 30, 2).fill()
-ctx.circle(30, 30, 20).stroke()
-
-ctx.circle(80, 30, 2).fill()
-ctx.circle(80, 30, 20).stroke()
-
-ctx.circle(50, 45, 2).fill()
-ctx.circle(60, 45, 2).fill()
-ctx.circle(55, 60, 2).fill()
-ctx.line(50, 45, 55, 60).stroke()
-ctx.line(60, 45, 55, 60).stroke()
-```
-
-Noone is stopping you from doing this:
-```javascript
-ctx.lineWidth(10).strokeStyle('lightseagreen').fillStyle('yellow').lineCap('round').line(30, 10, 80, 10).stroke().circle(30, 30, 20).fill().stroke().circle(80, 30, 20).fill().stroke().line(50, 40, 55, 60).stroke().line(60, 40, 55, 60).stroke().fillStyle('violet').strokeStyle('violet').lineWidth(2).circle(30, 10, 2).fill().circle(80, 10, 2).fill().line(30, 10, 80, 10).stroke().circle(30, 30, 2).fill().circle(30, 30, 20).stroke().circle(80, 30, 2).fill().circle(80, 30, 20).stroke().circle(50, 45, 2).fill().circle(60, 45, 2).fill().circle(55, 60, 2).fill().line(50, 45, 55, 60).stroke().line(60, 45, 55, 60).stroke()
-```
-
-Whatever you prefer, works best!
+Creates this awesome logo:
+<img src="logo.png" alt="Context-helper logo" /> 
