@@ -31,5 +31,5 @@
   // Bracket
   ctx.resetTranslate(75, 42).beginPath().moveTo(-10, -10).lineTo(0, 0).lineTo(-10, 10).stroke('#F35050')
 ```
-Creates this awesome logo:
+Creates this awesome logo:  
 <img src="logo.png" alt="Context-helper logo" /> 
