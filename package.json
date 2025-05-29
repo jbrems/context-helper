@@ -1,18 +1,15 @@
 {
   "name": "@jbrems/context-helper",
-  "version": "0.0.0",
-  "description": "Daisy chained helper methods for the Canvas 2D context",
+  "version": "0.1.0",
+  "description": "Daisy chained helper methods for the CanvasRenderingContext2D",
   "type": "module",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "main": "context-helper.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jbrems/context-helper.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Jonas Brems",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/jbrems/context-helper/issues"

@@ -9,27 +9,28 @@
   const ctx = new ContextHelper(canvas.getContext('2d'))
 
   // Tripod
-  ctx.lineWidth(4).lineCap('round').lineJoin('round').strokeStyle('#2B2B2B').fillStyle('#C47A3D')
-  ctx.rect(47, 10, 6, 80, 2).stroke().fill()
-  ctx.translate(35, 55).rotate(10).rect(-3, -40, 6, 80, 2).stroke().fill()
-  ctx.resetTranslate(65, 55).rotate(-10).rect(-3, -40, 6, 80, 2).stroke().fill()
-  ctx.resetTranslate(50, 65).rect(-35, -3, 70, 6, 2).stroke().fill()
+  ctx.setLineWidth(8).setLineCap('round').setLineJoin('round').setStrokeStyle('#2B2B2B').setFillStyle('#C47A3D')
+  ctx.beginPath().roundRect(93, 20, 12, 150, 4).stroke().fill()
+  ctx.translate(70, 110).rotateDegrees(10).beginPath().roundRect(-6, -80, 12, 160, 4).stroke().fill()
+  ctx.resetTransform().translate(128, 110).rotateDegrees(-10).beginPath().roundRect(-6, -80, 12, 160, 4).stroke().fill()
+  ctx.resetTransform().translate(100, 130).beginPath().roundRect(-70, -6, 140, 12, 4).stroke().fill()
 
   // Canvas
-  ctx.resetTranslate(50, 42).rect(-30, -20, 60, 40, 2).stroke('#2B2B2B').fill('white')
+  ctx.resetTransform().translate(100, 84).beginPath().roundRect(-60, -40, 120, 80, 4).stroke('#2B2B2B').fill('white')
 
   // Bracket
-  ctx.lineWidth(3)
-  ctx.resetTranslate(25, 42).beginPath().moveTo(10, -10).lineTo(0, 0).lineTo(10, 10).stroke('#F35050')
+  ctx.setLineWidth(6)
+  ctx.resetTransform().translate(50, 88).beginPath().moveTo(10, -10).lineTo(0, 0).lineTo(10, 10).stroke('#F35050')
   
   // c
-  ctx.translate(18, 0).beginPath().arc(0, 0, 6, 0.25 * Math.PI, 1.75 * Math.PI, false).stroke('#2D8EFF')
+  ctx.translate(34, 0).beginPath().arc(0, 0, 12, 0.25 * Math.PI, 1.75 * Math.PI, false).stroke('#2D8EFF')
 
   // h
-  ctx.translate(10, 0).beginPath().moveTo(0, 6).lineTo(0, -12).moveTo(0, 1).arc(5, 1, 5, Math.PI, 0, false).lineTo(10, 6).stroke('#3DBA73')
+  ctx.translate(22, 0).beginPath().moveTo(0, 12).lineTo(0, -24).moveTo(0, 2).arc(10, 2, 10, Math.PI, 0, false).lineTo(20, 12).stroke('#3DBA73')
   
   // Bracket
-  ctx.resetTranslate(75, 42).beginPath().moveTo(-10, -10).lineTo(0, 0).lineTo(-10, 10).stroke('#F35050')
+  ctx.resetTransform().translate(150, 88).beginPath().moveTo(-10, -10).lineTo(0, 0).lineTo(-10, 10).stroke('#F35050')
+    
 ```
 Creates this awesome logo:  
 <img src="logo.png" alt="Context-helper logo" /> 
